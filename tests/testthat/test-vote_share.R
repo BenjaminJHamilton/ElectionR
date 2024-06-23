@@ -11,13 +11,13 @@ test_that("vote_share calculates correctly", {
   )
 
   expect_equal(
-    vote_share(df),
+    vote_share(df, votes),
     expected_output
   )
 
 })
 
-test_that("vote_share column selection works", {
+test_that("vote_share column selection works and grouping works", {
 
   df <- data.frame(votes = c(5, 9), party = c("A Group", "B Team"))
 
@@ -28,10 +28,26 @@ test_that("vote_share column selection works", {
   )
 
   expect_equal(
-    vote_share(df, raw_vote = "votes"),
+    vote_share(df, raw_vote = votes),
     expected_output
   )
 
+  df_group <- data.frame(
+    votes = c(5, 9, 6, 8),
+    party = c("A Group", "B Team", "A Group", "B Team"),
+    year = c(2019, 2019, 2024, 2024)
+  )
+  expected_output <- data.frame(
+    votes = c(5, 9, 6, 8),
+    party = c("A Group", "B Team", "A Group", "B Team"),
+    year = c(2019, 2019, 2024, 2024),
+    vote_share = c(5/14, 9/14, 6/14, 8/14)
+  )
+
+  expect_equal(
+    vote_share(df_group, raw_vote = votes, .group = year),
+    expected_output
+  )
 })
 
 test_that("vote_share argument checking works", {
@@ -47,10 +63,9 @@ test_that("vote_share argument checking works", {
 
   # Check the column name argument checking works
   df <- data.frame(votes = c(5, 9), party = c("A Group", "B Team"))
-  err_col <- rlang::catch_cnd(vote_share(df, raw_vote = 1L))
+  err_col <- rlang::catch_cnd(vote_share(df, raw_vote = NOT_PRESENT))
 
-  expect_s3_class(err_col, "error_bad_argument")
-  expect_equal(err_col$arg, "raw_vote")
-  expect_equal(err_col$not, "integer")
+  expect_s3_class(err_col, "vctrs_error_subscript_oob")
+  expect_equal(err_col$subscript_arg, "NOT_PRESENT")
 
 })

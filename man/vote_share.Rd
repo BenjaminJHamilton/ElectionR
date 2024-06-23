@@ -4,12 +4,14 @@
 \alias{vote_share}
 \title{Calculate the vote share of parties}
 \usage{
-vote_share(data, raw_vote = NULL, .group = NULL)
+vote_share(data, raw_vote, .group = NULL)
 }
 \arguments{
 \item{data}{A data frame of parties and their raw vote numbers}
 
 \item{raw_vote}{Character vector of column name that contain raw vote numbers}
+
+\item{.group}{Column to group by}
 }
 \value{
 An object of the same type as parties. The output has the following properties:
@@ -21,7 +23,14 @@ An object of the same type as parties. The output has the following properties:
 Calculate the vote share of parties
 }
 \examples{
+# Use literal variables to
 df <- data.frame(party = c("A Group", "B Team"), votes = c(5, 9))
-vote_share(df, "party", "votes")
+vote_share(df, votes)
 
+df2 <- data.frame(
+  party = c("A Group", "B Team", "A Group", "B Team"),
+  votes = c(5, 9, 6, 8),
+  year = c(2019, 2019, 2024, 2024)
+ )
+vote_share(df2, votes, .group = year)
 }

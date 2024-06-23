@@ -20,7 +20,7 @@
 #'   votes = c(5, 9, 6, 8),
 #'   year = c(2019, 2019, 2024, 2024)
 #'  )
-#' vote_share(df, votes, .group = year)
+#' vote_share(df2, votes, .group = year)
 vote_share <- function(data, raw_vote, .group = NULL) {
 
   if (!is.data.frame(data)) {
