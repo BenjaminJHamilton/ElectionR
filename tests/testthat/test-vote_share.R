@@ -28,7 +28,7 @@ test_that("vote_share column selection works", {
   )
 
   expect_equal(
-    vote_share(df, .party = "party", .raw_vote = "votes"),
+    vote_share(df, raw_vote = "votes"),
     expected_output
   )
 
@@ -47,10 +47,10 @@ test_that("vote_share argument checking works", {
 
   # Check the column name argument checking works
   df <- data.frame(votes = c(5, 9), party = c("A Group", "B Team"))
-  err_col <- rlang::catch_cnd(vote_share(df, 1L, "votes"))
+  err_col <- rlang::catch_cnd(vote_share(df, raw_vote = 1L))
 
   expect_s3_class(err_col, "error_bad_argument")
-  expect_equal(err_col$arg, ".party")
+  expect_equal(err_col$arg, "raw_vote")
   expect_equal(err_col$not, "integer")
 
 })

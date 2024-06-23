@@ -4,16 +4,12 @@
 \alias{vote_share}
 \title{Calculate the vote share of parties}
 \usage{
-vote_share(data, .party = NULL, .raw_vote = NULL)
+vote_share(data, raw_vote = NULL, .group = NULL)
 }
 \arguments{
 \item{data}{A data frame of parties and their raw vote numbers}
 
-\item{.party}{Character vector of column name that contains party names. By
-default the first column}
-
-\item{.raw_vote}{Character vector of column name that contain raw vote numbers.
-By default the second column}
+\item{raw_vote}{Character vector of column name that contain raw vote numbers}
 }
 \value{
 An object of the same type as parties. The output has the following properties:
