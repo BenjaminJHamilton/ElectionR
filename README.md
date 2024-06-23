@@ -8,7 +8,9 @@
 [![R-CMD-check](https://github.com/BenjaminJHamilton/ElectionR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/BenjaminJHamilton/ElectionR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of ElectionR is to …
+ElectionR aims to provide convenient methods for analysing election
+results. This package is built as a way to gain experience in producing
+packages in R.
 
 ## Installation
 
