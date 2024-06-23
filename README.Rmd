@@ -36,14 +36,8 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(ElectionR)
-## basic example code
+
+df <- data.frame(party = c("A Group", "B Team", "C Fellas"), votes = c(5.5, 9.2, 1.2))
+
+vote_share(df)
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
