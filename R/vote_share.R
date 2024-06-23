@@ -18,8 +18,19 @@
 #'
 vote_share <- function(data, .party = NULL, .raw_vote = NULL) {
 
+  if (!is.data.frame(data)) {
+    abort_bad_argument("data", must = "be data.frame", not = data)
+  }
+
   party_col <- if (is.null(.party)) colnames(data)[[1]] else .party
   vote_col <- if (is.null(.raw_vote)) colnames(data)[[2]] else .raw_vote
+
+  if (!is.character(party_col)) {
+    abort_bad_argument(".party", must = "be character", not = party_col)
+  }
+  if (!is.character(vote_col)) {
+    abort_bad_argument(".raw_vote", must = "be character", not = vote_col)
+  }
 
   total_votes <- sum(data[[vote_col]])
 
