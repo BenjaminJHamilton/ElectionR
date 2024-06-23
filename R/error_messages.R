@@ -5,6 +5,8 @@
 #' @param arg Character Argument of function error relates to
 #' @param must What must the function be.
 #' @param not Argument that error is about. Optional, by default NULL
+#' @param call Returns the parent environment that called the error with
+#'   `rlang::caller_env()`.
 #'
 #' @return None. Throws error_bad_argument error
 #'
