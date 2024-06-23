@@ -1,0 +1,3 @@
+# ElectionR
+
+Initial Set Up
